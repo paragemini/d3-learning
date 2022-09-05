@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <body>
+    <script>
+      let width = 800;
+      let height = 200;
+
+      let dataset = [];
+      for (let i = 0; i < 100; i++) {
+        dataset.push(Math.random() * 150);
+      }
+
+      console.log(dataset);
+
+      let svg = d3
+        .select("body")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .style("border", "solid 2px");
+      svg
+        .selectAll("rect")
+        .data(dataset)
+        .enter()
+        .append("rect")
+        .attr("x", (d, i) => i * 30)
+        .attr("y", (d) => height - d)
+        .attr("width", 25)
+        .attr("height", (d) => d);
+    </script>
+  </body>
+</html>
