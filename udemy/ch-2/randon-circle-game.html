@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+  </head>
+  <body>
+    <button onclick="randomize();">Update Me</button>
+    <br />
+    <br />
+    <script>
+      let w = 1400;
+      let h = 700;
+      let dataset = [];
+
+      for (let i = 0; i < 2000; i++) {
+        dataset.push(Math.round(Math.random() * i));
+      }
+
+      const svg = d3
+        .select("body")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h)
+        .style("border", "solid 2px")
+        .style("background", "pink");
+
+      svg
+        .selectAll("circle")
+        .data(dataset)
+        .enter()
+        .append("circle")
+        .attr("cx", (d, i) => Math.random() * w)
+        .attr("cy", (d, i) => Math.random() * h)
+        .attr("r", Math.random() * 22)
+        .style("fill", function (d, i) {
+          return (
+            "rgb(" +
+            Math.random() * i +
+            "," +
+            Math.random() * i +
+            "," +
+            Math.random() * i +
+            ")"
+          );
+        });
+
+      function randomize() {
+        svg
+          .selectAll("circle")
+          .attr("cx", (d, i) => Math.random() * w)
+          .attr("cy", (d, i) => Math.random() * h)
+          .attr("r", (d, i) => Math.random() * 25)
+          .style("fill", function (d, i) {
+            return "rgb(0,0," + Math.random() * d + ")";
+          });
+      }
+    </script>
+  </body>
+</html>
