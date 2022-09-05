@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+      p {
+        background-color: pink;
+        font-size: 15px;
+        font-family: sans-serif;
+        margin-left: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Chair 1</p>
+    <p>Chair 2</p>
+    <p>Chair 3</p>
+    <p>Chair 4</p>
+    <script>
+      let dataset = [5, 12, 16, 76, 45, 56];
+      //  update = d3.select("body").selectAll("p").remove();
+      /*d3.select("body")
+        .selectAll("p")
+        .data(dataset)
+        .enter()
+        .append("p")
+        .text((d) => d); */
+      update = d3.selectAll("p").data(dataset);
+
+      update
+        .enter()
+        .append("p")
+        .merge(update)
+        .text((d) => d);
+    </script>
+  </body>
+</html>
