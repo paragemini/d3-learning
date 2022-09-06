@@ -1,0 +1,31 @@
+!<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Horizontal Bar Chart</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+  </head>
+  <body>
+   <script>
+    let h = 600;
+    let w = 600; 
+    let dataset = [12,54,67,12,98,56,76,100,34,76,83,16,43];
+    svg = d3.select('body').append('svg').attr('width', w).attr('height',h)
+    .style('border', 'solid 2px').style('background','orange');
+    svg.selectAll('rect').data(dataset).enter().append('rect').attr('width', 25)
+    .attr('height',(d)=> d*5).attr('x', (d,i)=> i * 28).attr('y',(d)=> h-(d*5) + 'px');
+    svg.selectAll('text').data(dataset).enter().append('text').attr('x', (d,i)=> (i * 28)+2 )
+    .attr('y',(d)=> h-(d*5) - 5 + 'px').text((d)=> d);
+
+
+
+   </script>
+  </body>
+</html>

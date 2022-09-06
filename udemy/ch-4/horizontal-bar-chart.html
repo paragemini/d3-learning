@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<style>
+  div {
+    background-color: orange;
+    margin-top: 10px;
+    color: black;
+    line-height: 30px;
+   border: solid 2px;
+   padding-left: 5px;
+  }
+</style>
+<body>
+  <script>
+
+let dataset = [12,54,67,12,98,56,76,100,34,76,83,16,43];
+    d3.select('body').selectAll('div').data(dataset).enter().append('div')
+    .style('width', (d)=> d * 5 + 'px').style('height', 30 + 'px').text((d)=> d);
+  </script>
+</body>
+</html>
