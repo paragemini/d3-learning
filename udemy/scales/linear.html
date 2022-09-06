@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+  </head>
+  <body>
+    <script>
+      let dataset = [
+        150, 65, 25, 87, 23, 98, 67, 9, 200, 76, 129, 167, 111, 12, 44, 67, 100,
+      ];
+      let h = 600;
+      let w = 600;
+
+      const svg = d3
+        .select("body")
+        .append("svg")
+        .attr("height", h)
+        .attr("width", w)
+        .style("border", "solid 2px");
+
+      yScale = d3
+        .scaleLinear()
+        .domain([
+          d3.min(dataset, (d) => d - 100),
+          d3.max(dataset, (d) => d + 100),
+        ])
+        .range([0, h]);
+
+      colorScale = d3
+        .scaleLinear()
+        .domain([
+          d3.min(dataset, (d) => d - 100),
+          d3.max(dataset, (d) => d + 100),
+        ])
+        .range(["red", "blue"]);
+
+      for (let i = 0; i < dataset.length - 1; i++) {
+        console.log(dataset[i] + " : " + yScale(dataset[i]));
+      }
+
+      svg
+        .selectAll("rect")
+        .data(dataset)
+        .enter()
+        .append("rect")
+        .attr("x", (d, i) => i * 30)
+        .attr("y", (d) => h - yScale(d))
+        .attr("height", (d) => yScale(d))
+        .attr("width", "25px")
+        .style("fill", (d) => colorScale(d));
+    </script>
+  </body>
+</html>
