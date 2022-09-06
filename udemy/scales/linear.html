@@ -9,9 +9,7 @@
   </head>
   <body>
     <script>
-      let dataset = [
-        150, 65, 25, 87, 23, 98, 67, 9, 200, 76, 129, 167, 111, 12, 44, 67, 100,
-      ];
+      let dataset = [10, 13, 22, 9, 4, 11, 17, 19];
       let h = 600;
       let w = 600;
 
@@ -32,11 +30,8 @@
 
       colorScale = d3
         .scaleLinear()
-        .domain([
-          d3.min(dataset, (d) => d - 100),
-          d3.max(dataset, (d) => d + 100),
-        ])
-        .range(["red", "blue"]);
+        .domain([d3.min(dataset, (d) => d), d3.max(dataset, (d) => d)])
+        .range(["indigo", "green"]);
 
       for (let i = 0; i < dataset.length - 1; i++) {
         console.log(dataset[i] + " : " + yScale(dataset[i]));
