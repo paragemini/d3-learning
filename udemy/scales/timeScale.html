@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <script>
+        let  details = [{"date":"2017-06-30", "tax": 20000},
+        {"date":"2017-09-30", "tax": 10000},
+        {"date":"2017-12-31", "tax": 30000},
+        {"date":"2018-03-31", "tax": 15000}]; 
+
+        let h = 600;
+        let w = 400;
+
+        const svg = d3.select('body').append('svg').attr("height",h).attr("width",w)
+                     .style('border','solid 2px')
+
+        let startDate = d3.min(details, (d)=> new Date(d.date))
+        let endDate = d3.max(details, (d)=> new Date(d.date))
+
+        xTimeScale = d3.scaleTime().domain([startDate,endDate]).range([0,w-30]);
+        yScale = d3.scaleLinear().domain([0,
+                                          d3.max(details, (d)=> d.tax) + 1000])
+                                          .range([0,h]);
+        
+        svg.selectAll('rect').data(details).enter().append('rect')
+            .attr("width", 25).attr('height', (d)=> yScale(d.tax))
+            .attr('x',(d,i) => xTimeScale(new Date(d.date)) )
+            .attr('y', (d)=> h - yScale(d.tax))
+            .style("fill", "green");
+        
+
+    </script>
+</body>
+</html>
